@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="690129be-9ad1-43d5-b4ee-3d39dd3a9e6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/control/WordleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Guess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/LetterFeedback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/RandomWordFetcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/WordleModel.java" afterDir="false" />
+    <list default="true" id="690129be-9ad1-43d5-b4ee-3d39dd3a9e6e" name="Changes" comment="added model, controller skeleton; &#10;fix deprecated URL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/control/WordleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/control/WordleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/RandomWordFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RandomWordFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/WordleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/WordleModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,22 +34,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.RandomWordFetcher.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/java/Wordle",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/sauur/OneDrive/Desktop/3560-OOP/WordleProj/src/main/java/org/example/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.RandomWordFetcher.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/java/Wordle&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/sauur/OneDrive/Desktop/3560-OOP/WordleProj/src/main/java/org/example/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -71,12 +67,27 @@
       <option name="presentableId" value="Default" />
       <updated>1758220052341</updated>
       <workItem from="1758220053471" duration="6000" />
-      <workItem from="1758476107717" duration="3173000" />
+      <workItem from="1758476107717" duration="3324000" />
+      <workItem from="1758487999234" duration="1411000" />
     </task>
+    <task id="LOCAL-00001" summary="added model, controller skeleton; &#10;fix deprecated URL">
+      <option name="closed" value="true" />
+      <created>1758479425840</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1758479425840</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added model, controller skeleton;" />
+    <MESSAGE value="added model, controller skeleton; &#10;fix deprecated URL" />
+    <option name="LAST_COMMIT_MESSAGE" value="added model, controller skeleton; &#10;fix deprecated URL" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

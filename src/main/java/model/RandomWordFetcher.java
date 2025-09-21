@@ -3,13 +3,15 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Random;
+import java.net.URI;
+
 
 public class RandomWordFetcher {
     private static final String API_URL = "https://random-word-api.herokuapp.com/word?length=5";
 
     public static String fetchRandomWord() throws Exception {
-        URL url = new URL(API_URL);
+        URI uri = new URI(API_URL);
+        URL url = uri.toURL();
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setConnectTimeout(5000);
