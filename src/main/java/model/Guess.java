@@ -1,7 +1,9 @@
 package model;
+import java.util.Arrays;
 
 //houses individual 5- letter words guessed by user;
 //provides access to correctness of each letter
+
 
 public class Guess {
     private final String guess;
@@ -33,5 +35,10 @@ public class Guess {
     //return validity of letter according to given position
     public LetterFeedback getLetterEval(int pos) {
         return letterEval[pos];
+    }
+
+    @Override
+    public String toString() {
+        return "Guess string: \""+this.guess + "\" Feedback: "+ Arrays.toString(letterEval);
     }
 }
