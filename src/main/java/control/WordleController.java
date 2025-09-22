@@ -10,7 +10,6 @@ public class WordleController {
     }
 
     public void onGuess(String word){ //when guess is made, inc guess count and pass word to model
-        model.incrementGuessCount();
         model.makeGuess(word);
 
     }

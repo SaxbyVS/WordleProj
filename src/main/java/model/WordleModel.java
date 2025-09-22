@@ -41,9 +41,6 @@ public class WordleModel {
     public Guess getLastGuess(){
         return this.guessesMade[guessCount - 1];
     }
-    public void incrementGuessCount(){
-        this.guessCount++;
-    }
     public void incrementGameScore(){
         this.gameScore++;
     }
