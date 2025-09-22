@@ -16,9 +16,11 @@ public class WordleModel {
     }
 
     public void makeGuess(String word){
-        Guess userGuess = new Guess(word, this.secretWord);
-        this.guessesMade[guessCount] = userGuess;
-        guessCount++;
+        if (this.guessCount < 6) {
+            Guess userGuess = new Guess(word, this.secretWord);
+            this.guessesMade[guessCount] = userGuess;
+            guessCount++;
+        }
     }
 
     public void resetGame() throws Exception { //for ui to enable continuous play
@@ -30,10 +32,10 @@ public class WordleModel {
 
     //GETTERS/SETTERS | WIN/LOSS CHECKERS
     public Boolean isWon(){
-        return (this.guessesMade[this.guessCount - 1].getGuess().equals(secretWord));
+        return (this.guessesMade[this.guessCount - 1].getGuess().equals(secretWord) && this.guessCount<=6);
     }
     public Boolean isLost(){
-        return (this.guessCount==6 && this.secretWord.equals(this.guessesMade[guessCount-1].getGuess()));
+        return (this.guessCount==6 && !(this.secretWord.equals(this.guessesMade[guessCount-1].getGuess())));
     }
     public String getSecretWord(){
         return this.secretWord;

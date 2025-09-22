@@ -11,7 +11,6 @@ public class WordleController {
 
     public void onGuess(String word){ //when guess is made, inc guess count and pass word to model
         model.makeGuess(word);
-
     }
 
     public void refreshGame() throws Exception { // reset game state for continuous play
