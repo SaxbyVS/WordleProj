@@ -13,6 +13,7 @@ WordleController
 public class WordleController {
     private final WordleModel model;
     private String buffer = "";
+    private Boolean guessState = false;
 
     public WordleController(WordleModel model) {
         this.model = model;
@@ -25,14 +26,16 @@ public class WordleController {
     }
 
     public void onKeyPress(String key){
-        if(key.equals("ENTER")) {
-            if (buffer.length()==5){
+        if (buffer.length()<=5) {
+            if (key.equals("ENTER")&& buffer.length()==5) {
                 onGuess(buffer);
+                guessState = true;
+                buffer = "";
+            } else if (key.equals("BACKSPACE")) {
+                buffer = buffer.substring(0, buffer.length() - 1);
+            } else if (key.length() == 1 && Character.isLetter(key.charAt(0)) && buffer.length()<5) {
+                buffer = buffer + key.toUpperCase();
             }
-        }else if (key.equals("BACKSPACE")) {
-            buffer = buffer.substring(0, buffer.length()-1);
-        }else if (key.length()==1 && Character.isLetter(key.charAt(0))){
-            buffer = buffer + key;
         }
     }
 
@@ -46,20 +49,41 @@ public class WordleController {
 
 
     //GETTERS; win/loss checkers | (for ui to handle refreshing/game flow)
-    public WordleModel getModel() {
-        return model;
-    }
     public Boolean isWon(){
         return model.isWon();
     }
     public Boolean isLost(){
         return model.isLost();
     }
+    public int getGameScore(){
+        return model.getGameScore();
+    }
+    public int getGuessCount(){
+        return model.getGuessCount();
+    }
+    public String getBuffer(){
+        return buffer;
+    }
+    public Boolean getGuessState(){
+        return guessState;
+    }
+    public void resetGuessState(){
+        guessState = false;
+    }
 
+    public Guess getLastGuess(){
+        return model.getLastGuess();
+    }
+    public String getSecretWord(){
+        return model.getSecretWord();
+    }
+
+    //SAVE/LOAD
     public void saveGame() { //save current game state
+        model.saveGame();
     }
 
     public void loadGame(){ //load last saved game if it exists
-
+        model.loadGame();
     }
 }

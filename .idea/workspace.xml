@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="690129be-9ad1-43d5-b4ee-3d39dd3a9e6e" name="Changes" comment="isLost/isWon bug and guessCount constraints for guesses made">
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/SwingWordle.java" afterDir="false" />
+    <list default="true" id="690129be-9ad1-43d5-b4ee-3d39dd3a9e6e" name="Changes" comment="Completed: Refresh (drawing), Resetting&#10;Things Left: test save/load impl, ponder double letter bug">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/SaveState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/control/WordleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/control/WordleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Guess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Guess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/RandomWordFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RandomWordFetcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/WordleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/WordleModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/WordleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/WordleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SwingWordle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SwingWordle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,24 +37,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.RandomWordFetcher.executor": "Run",
-    "Application.SwingWordle.executor": "Run",
-    "JUnit.WordleTest.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/java/Wordle",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/sauur/OneDrive/Desktop/3560-OOP/WordleProj/src/main/java/org/example/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.RandomWordFetcher.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SwingWordle.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.WordleTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/java/Wordle&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/sauur/OneDrive/Desktop/3560-OOP/WordleProj/src/main/java/org/example/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -75,7 +76,9 @@
       <workItem from="1758487999234" duration="1485000" />
       <workItem from="1758505325277" duration="58000" />
       <workItem from="1758505522373" duration="188000" />
-      <workItem from="1758573643442" duration="6792000" />
+      <workItem from="1758573643442" duration="6895000" />
+      <workItem from="1759000821065" duration="1717000" />
+      <workItem from="1759002548993" duration="6612000" />
     </task>
     <task id="LOCAL-00001" summary="added model, controller skeleton; &#10;fix deprecated URL">
       <option name="closed" value="true" />
@@ -109,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758505702915</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="basic junit tests; ui setup minus saving/loading controller/model and refresh">
+      <option name="closed" value="true" />
+      <created>1758580519340</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1758580519340</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,7 +143,9 @@
     <MESSAGE value="added skeleton for continuous play; missing save/load functionality" />
     <MESSAGE value="small guessCount bug fix" />
     <MESSAGE value="isLost/isWon bug and guessCount constraints for guesses made" />
-    <option name="LAST_COMMIT_MESSAGE" value="isLost/isWon bug and guessCount constraints for guesses made" />
+    <MESSAGE value="basic junit tests; ui setup minus saving/loading controller/model and refresh" />
+    <MESSAGE value="Completed: Refresh (drawing), Resetting&#10;Things Left: test save/load impl, ponder double letter bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed: Refresh (drawing), Resetting&#10;Things Left: test save/load impl, ponder double letter bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

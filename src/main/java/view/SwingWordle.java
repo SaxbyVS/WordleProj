@@ -18,7 +18,8 @@ public class SwingWordle extends JFrame{
 
 
     private JLabel[][] boardCells = new JLabel[6][5];
-    private Map<String, JButton> keyboardButtons = new HashMap<String, JButton>();
+    private Map<String, JButton> keyboardButtons = new HashMap<>();
+    private Map<String, JButton> usedButtons = new HashMap<>();
 
     JPanel wordGrid = new JPanel(new GridLayout(6, 5, 5, 5));
     JLabel status = new JLabel("Guess the Word!");
@@ -30,7 +31,7 @@ public class SwingWordle extends JFrame{
         addWindowListener(new WindowAdapter() { //save game state on close
             @Override
             public void windowClosing(WindowEvent e) {
-                //controller.saveGame();
+//                controller.saveGame();
                 System.exit(0);
             }
         });
@@ -38,7 +39,13 @@ public class SwingWordle extends JFrame{
         setLayout(new BorderLayout());
 
         //loading past states for model/controller is there are any
-
+        try {
+            model = new WordleModel();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        controller = new WordleController(model);
+//        controller.loadGame();
         //end of load for model/controller
 
         //UI Setup
@@ -64,12 +71,118 @@ public class SwingWordle extends JFrame{
 
     private void refresh(){
         //update if guess made
-
+        updateScreenGuesses();
         //update current buffer
-
-        //update status - gamescore, guesscount
-
+        updateScreenBuffer();
+        //update status - gamescore
+        status.setText("Score: "+controller.getGameScore());
         //win/loss check
+        if (controller.isWon()){
+            showPopup(true);
+        }else if (controller.isLost()){
+            showPopup(false);
+        }
+
+    }
+
+    private void showPopup(Boolean won){
+        String userMessage = won ? "You won! The word was "+controller.getSecretWord() :
+                "You lost! The word was "+controller.getSecretWord();
+        int choice = JOptionPane.showOptionDialog(
+                this,
+                userMessage,
+                "Game Over",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new String[]{"Reset"},
+                "Reset"
+
+        );
+        if (choice == 0){
+            resetGame();
+        }
+    }
+
+    private void resetGame(){ //reset all on-screen elements and refresh controller
+        //reset grid cells
+        for (int i=0; i<controller.getGuessCount(); i++){
+            for (int j=0; j<5; j++){
+                boardCells[i][j].setText("");
+                boardCells[i][j].setBackground(null);
+            }
+        }
+
+        //refresh controller
+        try {
+            controller.refreshGame();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //reset on screen keys
+        for (Map.Entry<String, JButton> entry: usedButtons.entrySet()){
+            JButton button = entry.getValue();
+            button.setBackground(null);
+        }
+        usedButtons.clear();
+
+    }
+
+    private void updateScreenGuesses(){ //draws guesses on screen
+        if (controller.getGuessState()){ //only draws Guesses when new guess made
+            int currentRow = controller.getGuessCount()-1;
+            Guess guessMade = controller.getLastGuess();
+            String guess = guessMade.getGuess();
+            for (int i=0; i<5; i++){
+                char ch = guess.charAt(i);
+                LetterFeedback letterEval = guessMade.getLetterEval(i);
+                boardCells[currentRow][i].setText(String.valueOf(ch).toUpperCase());
+                switch (letterEval){
+                    case LetterFeedback.CORRECT:
+                        boardCells[currentRow][i].setBackground(Color.GREEN);
+                        updateKeyColor(String.valueOf(ch).toUpperCase(), Color.GREEN);
+                        break;
+                    case LetterFeedback.PRESENT:
+                        boardCells[currentRow][i].setBackground(Color.YELLOW);
+                        break;
+                    case LetterFeedback.ABSENT:
+                        boardCells[currentRow][i].setBackground(Color.RED);
+                        updateKeyColor(String.valueOf(ch).toUpperCase(), Color.GRAY);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            controller.resetGuessState();
+        }
+    }
+
+    private void updateKeyColor(String key, Color color){
+        JButton button = keyboardButtons.get(key.toUpperCase());
+        usedButtons.put(key.toUpperCase(), button);
+        if (button != null) {
+            button.setBackground(color);
+            button.setOpaque(true);
+
+        }
+    }
+
+    private void updateScreenBuffer(){ //updates full row of current guess buffer
+        int currentRow = controller.getGuessCount();
+        if (currentRow<6) {
+            String buffer = controller.getBuffer();
+            for (int i = 0; i < 5; i++) {
+                if (i < buffer.length()) {
+                    char ch = buffer.charAt(i);
+                    boardCells[currentRow][i].setText(String.valueOf(ch));
+                } else {
+                    boardCells[currentRow][i].setText("");
+                }
+
+            }
+        }
     }
 
     private void buildKeyBoard() { //on screen keyboard
@@ -113,8 +226,8 @@ public class SwingWordle extends JFrame{
         InputMap inputMap = this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
         ActionMap actionMap = this.getRootPane().getActionMap();
 
-        // Bind letters A–Z
-        for (char c = 'A'; c <= 'Z'; c++) {
+        // Bind letters A–Z a-z
+        for (char c = 'A'; c <= 'z'; c++) {
             String letter = String.valueOf(c);
             inputMap.put(KeyStroke.getKeyStroke(c), letter);
             actionMap.put(letter, new AbstractAction() {

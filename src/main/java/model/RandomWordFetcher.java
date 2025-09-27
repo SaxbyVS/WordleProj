@@ -5,6 +5,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URI;
 
+/*
+RandomWordFetcher
+    - pulls random five-letter word from random word api
+    - formats output into String
+    - returns String format of random word
+
+ */
+
 
 public class RandomWordFetcher {
     private static final String API_URL = "https://random-word-api.herokuapp.com/word?length=5";
