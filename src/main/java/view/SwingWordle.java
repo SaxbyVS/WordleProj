@@ -9,13 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SwingWordle extends JFrame{
     private WordleModel model;
     private WordleController controller;
-
+    private int refreshCount = 0; //just for checking first refresh/load past guesses
 
     private JLabel[][] boardCells = new JLabel[6][5];
     private Map<String, JButton> keyboardButtons = new HashMap<>();
@@ -31,7 +32,7 @@ public class SwingWordle extends JFrame{
         addWindowListener(new WindowAdapter() { //save game state on close
             @Override
             public void windowClosing(WindowEvent e) {
-//                controller.saveGame();
+                controller.saveGame();
                 System.exit(0);
             }
         });
@@ -45,7 +46,7 @@ public class SwingWordle extends JFrame{
             e.printStackTrace();
         }
         controller = new WordleController(model);
-//        controller.loadGame();
+        controller.loadGame();
         //end of load for model/controller
 
         //UI Setup
@@ -60,6 +61,7 @@ public class SwingWordle extends JFrame{
         add(keyboardPanel, BorderLayout.SOUTH);
         setupKeyBindings();
 
+        refresh();
         pack();
         setVisible(true);
     }
@@ -70,7 +72,10 @@ public class SwingWordle extends JFrame{
     }
 
     private void refresh(){
-        //update if guess made
+        if (refreshCount == 0){ //if guesses is populated from previous load state, update screen
+            loadScreenGuesses();
+        }
+        //update if new guess made
         updateScreenGuesses();
         //update current buffer
         updateScreenBuffer();
@@ -82,6 +87,7 @@ public class SwingWordle extends JFrame{
         }else if (controller.isLost()){
             showPopup(false);
         }
+        refreshCount++;
 
     }
 
@@ -127,6 +133,36 @@ public class SwingWordle extends JFrame{
         }
         usedButtons.clear();
 
+    }
+
+    private void loadScreenGuesses(){ //update screen for guesses from prior save state if there are any
+        if (controller.getGuessCount()>0){
+            Guess[] guessesMade = Arrays.copyOf(controller.getGuesses(), controller.getGuessCount());
+            for (int i=0; i<guessesMade.length; i++){
+                Guess guessMade = guessesMade[i];
+                String guess = guessMade.getGuess();
+                for (int j=0; j<5; j++){
+                    char ch = guess.charAt(j);
+                    LetterFeedback letterEval = guessMade.getLetterEval(j);
+                    boardCells[i][j].setText(String.valueOf(ch).toUpperCase());
+                    switch (letterEval){
+                        case LetterFeedback.CORRECT:
+                            boardCells[i][j].setBackground(Color.GREEN);
+                            updateKeyColor(String.valueOf(ch).toUpperCase(), Color.GREEN);
+                            break;
+                        case LetterFeedback.PRESENT:
+                            boardCells[i][j].setBackground(Color.YELLOW);
+                            break;
+                        case LetterFeedback.ABSENT:
+                            boardCells[i][j].setBackground(Color.RED);
+                            updateKeyColor(String.valueOf(ch).toUpperCase(), Color.GRAY);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
     }
 
     private void updateScreenGuesses(){ //draws guesses on screen

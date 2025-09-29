@@ -16,9 +16,10 @@ RandomWordFetcher
 
 public class RandomWordFetcher {
     private static final String API_URL = "https://random-word-api.herokuapp.com/word?length=5";
+    private static final String API_URL2 = "https://random-word-api.vercel.app/api?words=1&length=5";
 
     public static String fetchRandomWord() throws Exception {
-        URI uri = new URI(API_URL);
+        URI uri = new URI(API_URL2);
         URL url = uri.toURL();
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");

@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="690129be-9ad1-43d5-b4ee-3d39dd3a9e6e" name="Changes" comment="Completed: Refresh (drawing), Resetting&#10;Things Left: test save/load impl, ponder double letter bug">
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/SaveState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/control/WordleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/control/WordleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/RandomWordFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RandomWordFetcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/WordleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/WordleModel.java" afterDir="false" />
@@ -78,7 +76,8 @@
       <workItem from="1758505522373" duration="188000" />
       <workItem from="1758573643442" duration="6895000" />
       <workItem from="1759000821065" duration="1717000" />
-      <workItem from="1759002548993" duration="6612000" />
+      <workItem from="1759002548993" duration="6648000" />
+      <workItem from="1759181349813" duration="3406000" />
     </task>
     <task id="LOCAL-00001" summary="added model, controller skeleton; &#10;fix deprecated URL">
       <option name="closed" value="true" />
@@ -120,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758580519340</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Completed: Refresh (drawing), Resetting&#10;Things Left: test save/load impl, ponder double letter bug">
+      <option name="closed" value="true" />
+      <created>1759009171681</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1759009171681</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

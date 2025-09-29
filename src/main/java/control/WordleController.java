@@ -16,6 +16,9 @@ public class WordleController {
     private Boolean guessState = false;
 
     public WordleController(WordleModel model) {
+        if (model==null){
+            throw new IllegalStateException("Model not initialized");
+        }
         this.model = model;
     }
 
@@ -25,13 +28,13 @@ public class WordleController {
         }
     }
 
-    public void onKeyPress(String key){
+    public void onKeyPress(String key){ //process user's input buffer and make guesses
         if (buffer.length()<=5) {
             if (key.equals("ENTER")&& buffer.length()==5) {
                 onGuess(buffer);
                 guessState = true;
                 buffer = "";
-            } else if (key.equals("BACKSPACE")) {
+            } else if (key.equals("BACKSPACE") && !buffer.isEmpty()) {
                 buffer = buffer.substring(0, buffer.length() - 1);
             } else if (key.length() == 1 && Character.isLetter(key.charAt(0)) && buffer.length()<5) {
                 buffer = buffer + key.toUpperCase();
@@ -71,6 +74,9 @@ public class WordleController {
         guessState = false;
     }
 
+    public Guess[] getGuesses(){
+        return model.getGuesses();
+    }
     public Guess getLastGuess(){
         return model.getLastGuess();
     }
