@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class WordleTest {
 
     @Test
-    void basicWinTest(){
+    void basicWin(){
         WordleModel model = new WordleModel("mouth");
         WordleController controller = new WordleController(model);
         controller.onGuess("mouth");
@@ -17,7 +17,7 @@ public class WordleTest {
     }
 
     @Test
-    void basicNoWinTest(){
+    void basicNoWin(){
         WordleModel model = new WordleModel("sound");
         WordleController controller = new WordleController(model);
         controller.onGuess("snipe");
@@ -47,6 +47,19 @@ public class WordleTest {
     }
 
     @Test
+    void sixGuessWin(){
+        WordleModel model = new WordleModel("candy");
+        WordleController controller = new WordleController(model);
+        controller.onGuess("plane");
+        controller.onGuess("pline");
+        controller.onGuess("sandy");
+        controller.onGuess("rendy");
+        controller.onGuess("testy");
+        controller.onGuess("candy");
+        assertEquals(true, controller.isWon());
+    }
+
+    @Test
     void noGuessMade(){
         WordleModel model = new WordleModel("sound");
         WordleController controller = new WordleController(model);
@@ -60,5 +73,19 @@ public class WordleTest {
         controller.onGuess("snipe");
         controller.onGuess("pline");
         assertEquals(2, model.getGuessCount());
+    }
+
+    @Test
+    void addTooManyWords(){
+        WordleModel model = new WordleModel("sound");
+        WordleController controller = new WordleController(model);
+        controller.onGuess("snipe");
+        controller.onGuess("pline");
+        controller.onGuess("sandy");
+        controller.onGuess("rendy");
+        controller.onGuess("testy");
+        controller.onGuess("candy");
+        controller.onGuess("tiffy");
+        assertEquals(6, controller.getGuessCount());
     }
 }

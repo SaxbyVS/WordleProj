@@ -1,9 +1,7 @@
 package model;
-import com.google.gson.Gson;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import io.SaveLoad;
+
 
 /*
 WordleModel
@@ -54,52 +52,10 @@ public class WordleModel {
 
     //SAVE/LOAD
     public void saveGame(){ //save current state of game to JSON
-        if (guessCount>0) {
-            Gson gson = new Gson();
-            List<String> guesses = new ArrayList<>(); //convert guessesMade into list of strings
-            for (int i=0; i<guessCount; i++){
-                guesses.add(guessesMade[i].getGuess());
-            }
-
-            SaveState state = new SaveState(gameScore, secretWord, guesses); //create save state
-
-            try (FileWriter fw = new FileWriter("wordle_save.json")) {
-                gson.toJson(state, fw);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }else{
-            //save score and secretWord but empty Guess list
-            Gson gson = new Gson();
-            List<String> guesses = new ArrayList<>();
-
-            SaveState state = new SaveState(gameScore, secretWord, guesses); //create save state
-
-            try (FileWriter fw = new FileWriter("wordle_save.json")) {
-                gson.toJson(state, fw);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        SaveLoad.saveState(this);
     }
     public void loadGame(){ //load last saved state from JSON
-        Gson gson = new Gson();
-        File file = new File("wordle_save.json");
-        if (file.exists()) {
-            try (FileReader fr = new FileReader(file)) {
-                SaveState state = gson.fromJson(fr, SaveState.class);
-
-                this.secretWord = state.secretWord;
-                this.gameScore = state.gameScore;
-                if (state.guessesMade!=null) {
-                    for (String s : state.guessesMade) { //add guesses back to game; reinstates guessCount
-                        makeGuess(s);
-                    }
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        SaveLoad.loadState(this);
     }
 
 
@@ -137,6 +93,9 @@ public class WordleModel {
     }
     public void setGameScore(int score){
         this.gameScore = score;
+    }
+    public void setSecretWord(String word){
+        this.secretWord = word;
     }
     public void incrementGameScore(){
         this.gameScore++;

@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="690129be-9ad1-43d5-b4ee-3d39dd3a9e6e" name="Changes" comment="Completed: Refresh (drawing), Resetting&#10;Things Left: test save/load impl, ponder double letter bug">
+    <list default="true" id="690129be-9ad1-43d5-b4ee-3d39dd3a9e6e" name="Changes" comment="Completed: moved save/load to io. &#10;Things Left: letter evaluation bug/rework">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/SaveLoad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/control/WordleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/control/WordleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/RandomWordFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RandomWordFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/SaveState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/SaveState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/WordleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/WordleModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SwingWordle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SwingWordle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/WordleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/WordleTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,8 @@
       <workItem from="1758573643442" duration="6895000" />
       <workItem from="1759000821065" duration="1717000" />
       <workItem from="1759002548993" duration="6648000" />
-      <workItem from="1759181349813" duration="3406000" />
+      <workItem from="1759181349813" duration="3445000" />
+      <workItem from="1759186145548" duration="1643000" />
     </task>
     <task id="LOCAL-00001" summary="added model, controller skeleton; &#10;fix deprecated URL">
       <option name="closed" value="true" />
@@ -127,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759009171681</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Completed: save/load. debugging&#10;Things Left: ponder double letter bug">
+      <option name="closed" value="true" />
+      <created>1759184789939</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1759184789939</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,7 +161,9 @@
     <MESSAGE value="isLost/isWon bug and guessCount constraints for guesses made" />
     <MESSAGE value="basic junit tests; ui setup minus saving/loading controller/model and refresh" />
     <MESSAGE value="Completed: Refresh (drawing), Resetting&#10;Things Left: test save/load impl, ponder double letter bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed: Refresh (drawing), Resetting&#10;Things Left: test save/load impl, ponder double letter bug" />
+    <MESSAGE value="Completed: save/load. debugging&#10;Things Left: ponder double letter bug" />
+    <MESSAGE value="Completed: moved save/load to io. &#10;Things Left: letter evaluation bug/rework" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed: moved save/load to io. &#10;Things Left: letter evaluation bug/rework" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
