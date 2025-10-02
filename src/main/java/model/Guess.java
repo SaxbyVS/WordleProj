@@ -14,13 +14,27 @@ public class Guess {
         checkWord(secret);
     }
 
-    //populates letterEval array with appropriate feedback
+    //populates letterEval array with appropriate feedback (2 pass approach to deal with duplicates)
     public void checkWord(String secretWord){
-        for(int i = 0; i < 5; i++) {
-            if (guess.charAt(i) == secretWord.charAt(i)) {
+        int[] letterCounts = new int[26];
+        for (int i = 0; i < secretWord.length(); i++) { //count instances of each letter in secret word
+            letterCounts[secretWord.charAt(i) - 'a']++;
+        }
+
+        //first pass: only deal with Correct
+        for (int i=0; i<5; i++){
+            if (guess.charAt(i) == secretWord.charAt(i)){
                 letterEval[i] = LetterFeedback.CORRECT;
-            } else if (secretWord.contains(String.valueOf(guess.charAt(i)))){
+                letterCounts[guess.charAt(i) - 'a']--;
+            }
+        }
+        //second pass: Present and Absent
+        for(int i = 0; i < 5; i++) {
+            if (letterEval[i] == LetterFeedback.CORRECT){
+            }
+            else if (secretWord.contains(String.valueOf(guess.charAt(i))) && letterCounts[guess.charAt(i) - 'a'] > 0) {
                 letterEval[i] = LetterFeedback.PRESENT;
+                letterCounts[guess.charAt(i) - 'a']--;
             } else{
                 letterEval[i] = LetterFeedback.ABSENT;
             }

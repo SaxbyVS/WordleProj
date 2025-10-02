@@ -88,4 +88,20 @@ public class WordleTest {
         controller.onGuess("tiffy");
         assertEquals(6, controller.getGuessCount());
     }
+
+    @Test
+    void correctEvaluation(){
+        WordleModel model = new WordleModel("slept");
+        WordleController controller = new WordleController(model);
+        controller.onGuess("sleep");
+        Guess guess = controller.getLastGuess();
+//        System.out.println(guess.getGuess());
+
+        LetterFeedback[] correctEval = {LetterFeedback.CORRECT, LetterFeedback.CORRECT, LetterFeedback.CORRECT, LetterFeedback.ABSENT, LetterFeedback.PRESENT};
+
+        for (int i=0; i<5; i++){
+//            System.out.println("GuessPos number: " + i + ": " +guess.getLetterEval(i));
+            assertEquals(guess.getLetterEval(i), correctEval[i]);
+        }
+    }
 }

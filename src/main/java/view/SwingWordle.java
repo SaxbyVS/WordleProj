@@ -80,7 +80,7 @@ public class SwingWordle extends JFrame{
         //update current buffer
         updateScreenBuffer();
         //update status - gamescore
-        status.setText("Score: "+controller.getGameScore());
+        status.setText("Score: "+controller.getGameScore() + " Guess Count: "+controller.getGuessCount());
         //win/loss check
         if (controller.isWon()){
             showPopup(true);
@@ -132,7 +132,7 @@ public class SwingWordle extends JFrame{
             button.setBackground(null);
         }
         usedButtons.clear();
-
+        refresh();
     }
 
     private void loadScreenGuesses(){ //update screen for guesses from prior save state if there are any
