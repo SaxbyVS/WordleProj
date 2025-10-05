@@ -2,6 +2,7 @@ package control;
 
 import model.*;
 
+
 /*
 WordleController
     - controller which interacts with UI
@@ -15,6 +16,7 @@ public class WordleController {
     private String buffer = "";
     private Boolean guessState = false;
 
+    //CTOR
     public WordleController(WordleModel model) {
         if (model==null){
             throw new IllegalStateException("Model not initialized");
@@ -22,15 +24,16 @@ public class WordleController {
         this.model = model;
     }
 
+
     public void onGuess(String word){ //when guess is made, inc guess count and pass word to model
         if(word.length()==5) {
             model.makeGuess(word);
         }
     }
 
-    public void onKeyPress(String key){ //process user's input buffer and make guesses
+    public void onKeyPress(String key) throws Exception { //process user's input buffer and make guesses
         if (buffer.length()<=5) {
-            if (key.equals("ENTER")&& buffer.length()==5) {
+            if (key.equals("ENTER")&& buffer.length()==5 && GuessValidator.isValid(buffer.toLowerCase())) {
                 onGuess(buffer);
                 guessState = true;
                 buffer = "";
@@ -50,7 +53,7 @@ public class WordleController {
         model.resetGame();
     }
 
-
+    //MODEL routers
     //GETTERS; win/loss checkers | (for ui to handle refreshing/game flow)
     public Boolean isWon(){
         return model.isWon();
@@ -88,7 +91,6 @@ public class WordleController {
     public void saveGame() { //save current game state
         model.saveGame();
     }
-
     public void loadGame(){ //load last saved game if it exists
         model.loadGame();
     }

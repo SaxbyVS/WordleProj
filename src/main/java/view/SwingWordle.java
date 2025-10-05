@@ -66,8 +66,12 @@ public class SwingWordle extends JFrame{
         setVisible(true);
     }
 
-    private void onKeyPress(String key){
-        controller.onKeyPress(key);
+    private void onKeyPress(String key) {
+        try {
+            controller.onKeyPress(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         refresh();
     }
 
