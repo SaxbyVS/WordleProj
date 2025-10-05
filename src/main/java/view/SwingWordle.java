@@ -152,6 +152,7 @@ public class SwingWordle extends JFrame{
                             break;
                         case LetterFeedback.PRESENT:
                             boardCells[i][j].setBackground(Color.YELLOW);
+                            updateKeyColor(String.valueOf(ch).toUpperCase(), Color.YELLOW);
                             break;
                         case LetterFeedback.ABSENT:
                             boardCells[i][j].setBackground(Color.RED);
@@ -181,6 +182,7 @@ public class SwingWordle extends JFrame{
                         break;
                     case LetterFeedback.PRESENT:
                         boardCells[currentRow][i].setBackground(Color.YELLOW);
+                        updateKeyColor(String.valueOf(ch).toUpperCase(), Color.YELLOW);
                         break;
                     case LetterFeedback.ABSENT:
                         boardCells[currentRow][i].setBackground(Color.RED);
@@ -197,11 +199,13 @@ public class SwingWordle extends JFrame{
 
     private void updateKeyColor(String key, Color color){
         JButton button = keyboardButtons.get(key.toUpperCase());
-        usedButtons.put(key.toUpperCase(), button);
-        if (button != null) {
+        if (button != null && !usedButtons.containsKey(key.toUpperCase())) {
+            usedButtons.put(key.toUpperCase(), button);
             button.setBackground(color);
             button.setOpaque(true);
-
+        }
+        if (button != null && color == Color.GREEN){ //if color is green, update no matter what
+            button.setBackground(color);
         }
     }
 
