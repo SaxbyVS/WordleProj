@@ -9,33 +9,31 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+SaveLoad
+ - provides static functions to save/load the current WordleModel to/from a JSON file
+
+ */
+
+
 public  class SaveLoad {
     public static void saveState(WordleModel model){ //save current state of game to JSON
         Gson gson = new Gson();
         List<String> guesses = new ArrayList<>(); //convert guessesMade into list of strings
+        SaveState state;
+        //create save state
         if (model.getGuessCount()>0) {
             for (int i = 0; i< model.getGuessCount(); i++){
                 guesses.add(model.getGuesses()[i].getGuess());
             }
-
-            SaveState state = new SaveState(model.getGameScore(), model.getSecretWord(), guesses); //create save state
-
-            try (FileWriter fw = new FileWriter("wordle_save.json")) {
-                gson.toJson(state, fw);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }else{
-            //save score and secretWord but empty Guess list
-
-            SaveState state = new SaveState(model.getGameScore(), model.getSecretWord(), guesses); //create save state
-
-            try (FileWriter fw = new FileWriter("wordle_save.json")) {
-                gson.toJson(state, fw);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
+        state = new SaveState(model.getGameScore(), model.getSecretWord(), guesses); //create save state
+
+        try (FileWriter fw = new FileWriter("wordle_save.json")) {
+                gson.toJson(state, fw);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
     }
 
     public static void loadState(WordleModel model){ //load last saved state from JSON

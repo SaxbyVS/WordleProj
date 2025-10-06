@@ -201,7 +201,7 @@ public class SwingWordle extends JFrame{
         }
     }
 
-    private void updateKeyColor(String key, Color color){
+    private void updateKeyColor(String key, Color color){ //updates color of onscreen keys when guesses made/loaded
         JButton button = keyboardButtons.get(key.toUpperCase());
         if (button != null && !usedButtons.containsKey(key.toUpperCase())) {
             usedButtons.put(key.toUpperCase(), button);
@@ -243,7 +243,7 @@ public class SwingWordle extends JFrame{
             btn.setFocusable(false);
             btn.addActionListener(e -> onKeyPress(key)); // pass the whole label
             keyboardButtons.put(key, btn);
-            // optionally style ENTER/BACKSPACE bigger:
+
             if (key.equals("ENTER") || key.equals("BACKSPACE")) btn.setPreferredSize(new Dimension(80, 40));
             row.add(btn);
         }
