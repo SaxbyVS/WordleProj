@@ -2,6 +2,9 @@
 
 ### Shane Uriarte
 
+### Demo
+https://youtu.be/3NjDsNR40W0
+
 ## How to Run
 1. Clone repository: 'git clone https://github.com/SaxbyVS/WordleProj.git'
 2. Open in Intellij
